@@ -8,8 +8,11 @@ pub fn solve() {
 
     for l in content.lines().filter(|l| !l.trim().is_empty()) {
         let dash = l.find('-').unwrap();
-        let space = l[dash..].find(' ').unwrap();
-        let colon = l[space..].find(':').unwrap();
-        let range = l[..dash].parse::<usize>().unwrap()..l[dash..space].parse::<usize>().unwrap();
+        let start_range = &l[..dash];
+        let space = l.find(' ').unwrap();
+        let end_range = &l[dash + 1..space];
+
+        let range = start_range.parse::<usize>().unwrap()..end_range.parse::<usize>().unwrap();
+        let colon = l.find(':').unwrap();
     }
 }
